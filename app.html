@@ -12,11 +12,11 @@
     <div id="root">
       <h1 class="app-title">Ticket Booking App</h1>
       <div class="ticket-app">
-        <!-- <div class="confirmed-dialog" >
+        <div class="confirmed-dialog" v-if="confirmed">
           <h3>Ticket confirmed!</h3>
           <hr />
           <br />
-          <table class="selected-seats">
+          <table class="selected-seats" >
             <tr>
               <th>Passenger Name</th>
               <td>{{name}}</td>
@@ -43,7 +43,7 @@
           <br />
 
           <button class="confirm-button" @click="resetData">Book Again</button>
-        </div> -->
+        </div>
         <div class="ticket-app__top">
           <div class="seat-states">
             <div class="seat-state" v-for="(value, key) in seatStates">
@@ -125,12 +125,12 @@
               <p v-else>Applied Coupon : {{ appliedCoupon.code }}</p>
             </div>
 
-            <!-- <div class="info">
+            <div class="info">
               <input type="text" placeholder="Name" v-model="name" />
               <input type="text" placeholder="Mobile" v-model="mobile" />
             </div>
 
-            <button class="confirm-button" @click="confirm">Confirm</button> -->
+            <button class="confirm-button" @click="confirm">Confirm</button>
           </div>
         </div>
       </div>

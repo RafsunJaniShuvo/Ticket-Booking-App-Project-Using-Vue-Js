@@ -1,6 +1,9 @@
 let app = Vue.createApp({
     data(){
         return {
+            name:'',
+            mobile :'',
+            confirmed:false,
             appliedCoupon: null,
             couponCode: "",
             coupons: [
@@ -171,7 +174,27 @@ let app = Vue.createApp({
             }
             clickedSeat.type = (clickedSeat.type === 'selected') ? 'available' : 'selected';
           
-        }
+        },
+        confirm(){
+            if(!this.name || !this.mobile){
+               alert('Please give name and mobile number properly') 
+               return;
+            }else{
+                this.confirmed = true;
+            }
+        }, 
+         resetData() {
+            this.confirmed = false;
+            this.name = "";
+            this.mobile = "";
+            this.appliedCoupon = null;
+      
+            this.seats.forEach((seat) => {
+              if (seat.type === "selected") {
+                seat.type = "sold";
+              }
+            });
+          }
     },
     computed:{
         selectedSeats(){
