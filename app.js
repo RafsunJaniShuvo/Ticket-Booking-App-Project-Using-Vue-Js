@@ -1,6 +1,18 @@
 let app = Vue.createApp({
     data(){
         return {
+            appliedCoupon: null,
+            couponCode: "",
+            coupons: [
+                {
+                code: "100TAKAOFF",
+                discount: 100
+                },
+                {
+                code: "200TAKAOFF",
+                discount: 200
+                }
+            ],
             seatStates: {
                 sold: {
                   text: "Sold",
@@ -171,7 +183,24 @@ let app = Vue.createApp({
             this.selectedSeats.forEach(seat => {
                 tc += seat.price
             });
+            if(this.appliedCoupon !== null){
+                tc -= this.appliedCoupon.discount;
+            }
             return tc;
+        }
+    },
+    watch:{
+        couponCode(newValue){
+            if(newValue.length == 10){
+                let searchedCoupon = this.coupons.filter(
+                    (item)=> item.code === newValue
+                    )
+
+                    if(searchedCoupon.length == 1){
+                        this.appliedCoupon = searchedCoupon[0];
+                    }
+             
+            }
         }
     }
 })
